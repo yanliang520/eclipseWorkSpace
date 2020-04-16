@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot登陆</title>
+	<link rel="stylesheet" type="text/css" href="./js1/Easyui1.6/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="./js1/Easyui1.6/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="./js1/Easyui1.6/demo/demo.css"/>
+    <script type="text/javascript" src="./js1/Easyui1.6/jquery.min.js"></script>
+    <script type="text/javascript" src="./js1/Easyui1.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="./js1/Easyui1.6/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<!--  <div class="login-header">SpringBoot登陆</div>-->
+	<div class="login-main" >
+		<form id="login-frm" name="login-frm" action="#" onsubmit="return false" >
+		<div class="login-header">系统登陆</div>
+		<div id="sp3" ></div>
+		<div class="login-label">
+			<label>用户名</label>
+		</div>
+		<div >
+			<input type="text" name="sno" id="sno" class="name"  ><!-- placeholder="" required="" -->
+			<div id="sp1" style="width:50"></div>
+		</div>
+		<div class="login-label">
+			<label>密 码</label>
+		</div>
+		<div >
+			<input type="password" name="password" id="password" class="password" >
+			<div id="sp2"></div>
+		</div>
+			<div class="rem-for-agile">
+			<input type="checkbox" name="remember" class="remember" checked value="yes" title="记住我">记得我
+　　
+				<!--  <a href="passwordGoHome.html">忘记密码?</a><br>-->
+			</div>
+			<div class="login-w3">
+					<input type="submit" class="login" value="登陆">
+			</div>
+			<div class="clear"></div>
+			<!-- 
+			<div class="login-w3">
+					<input type="submit" class="register" value="注册">
+			</div>
+			<div class="clear"></div>
+			 -->
+		</form>
+	</div>
+	
+</body>
+<script type="text/javascript">
+$(function(){
+	$(".login").click(function(){
+		var username = $.trim($("input[name='sno']").val());
+		var password = $.trim($("input[name='password']").val());
+		if (username=='') {
+			$("#sp1").html("<font style='color:red'>请输入用户名!</font>");
+			 $("#sp1").css("display","inline").fadeOut(2000);
+			 username.focus();
+			 return false;
+		}else if (password=='') {
+			$("#sp2").html("<font style='color:red'>请输入密码!</font>");
+			$("#sp2").css("display","inline").fadeOut(2000);
+			password.focus();
+			return false;
+		}
+		
+		var url ="/loginPage?sno="+username+"&password="+password;
+		$.getJSON(url,function(data){
+			/*var msg = data.msg;
+			if (msg=='') {
+				//location.href="./tblftcPlan/tblftcPlan.html";
+				location.href="./Login/tblftcplan";
+			}else{
+				$("#sp3").html("<font style='color:red'>"+msg+"</font>");
+				$("#username").val('');
+				$("#password").val('');
+				$("#username").focus();
+			}*/
+		});
+		
+//		$.ajax({
+//			type:"POST",
+//			url:url,
+//			async:false,
+//			success:function(data){
+//			var msg=data.msg;
+//			if (msg==null) {
+//				location.href="./tblftcPlan/tblftcPlan.html";
+//			}else{
+//				alert(msg);
+//				location.reload();
+//			}
+//			}
+//		},'json');
+	});
+})
+</script>
+</html>
